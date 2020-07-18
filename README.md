@@ -1,5 +1,21 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+In package.json, changes were made.
+
+"start":"run-p start:dev start:api",
+"start:dev":"cross-env REACT_APP_API_URL=http://localhost:3001 react-scripts start",
+"prestart:api" : "node tools/createMockDb.js",
+"start:api": "node tools/apiServer.js",
+
+start:api to run node server to replicate backend
+prestart:api by convention will run before start:api as it has pre prefixed
+run-p means run parallel , to run the node server and react at same time at differnt port
+cross-env to share the environment varibales . IF it starts with REACT it will replace with value
+
+each time you restart the application db.json will be newly created.
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
