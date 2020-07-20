@@ -22,6 +22,7 @@ export default function App() {
             <Route path="/about" component={AboutPage}></Route>
             <Redirect from="/about-page" to="about"></Redirect>
             <Route path="/course:slug" component={ManageCourses}></Route>
+            <Route path="/course" component={ManageCourses}></Route>
             <Route component={PageNotFound}></Route>
             </Switch>
         </div>
