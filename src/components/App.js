@@ -6,6 +6,8 @@ import CoursesPage from './CoursesPage';
 import { Route, Switch , Redirect} from "react-router-dom";
 import PageNotFound from './common/PageNotFound';
 import ManageCourses from './ManageCourses';
+import { ToastContainer } from "react-toastify";
+import  "react-toastify/dist/ReactToastify.css"; 
 export default function App() {
     /*
     Route component takes two arguments . 
@@ -13,8 +15,10 @@ export default function App() {
     Argument 2:- The component which needs to be assigned the path
     */
 
+    //since hideProgressBar is a boolean in ToastContainer , we dont have to mention its value while passing as props
     return (
         <div className="container-fluid">
+            <ToastContainer autoClose={3000} hideProgressBar></ToastContainer>
             <Header></Header>
             <Switch>
             <Route path="/" exact component={HomePage}></Route>

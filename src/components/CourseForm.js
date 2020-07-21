@@ -1,21 +1,17 @@
 import React from "react";
+import TextArea from "./common/TextArea";
+
 
 function CourseForm(props) {
   return (
-    <form>
-      <div className="form-group">
-        <label htmlFor="title">Title</label>
-        <div className="field">
-          <input
-            id="title"
-            type="text"
-            name="title"
-            className="form-control"
-            value={props.course.title}
-            onChange={props.onChangeHandler}
-          />
-        </div>
-      </div>
+    <form onSubmit={props.onSubmit}>
+      <TextArea
+        id="title"
+        name="title"
+        label="title"
+        value={props.course.title}
+        onChange={props.onChangeHandler}
+      />
 
       <div className="form-group">
         <label htmlFor="author">Author</label>
@@ -34,19 +30,16 @@ function CourseForm(props) {
         </div>
       </div>
 
-      <div className="form-group">
-        <label htmlFor="category">Category</label>
-        <div className="field">
-          <input
-            type="text"
-            id="category"
-            name="category"
-            className="form-control"
-            value={props.course.category}
-            onChange={props.onChangeHandler}
-          />
-        </div>
-      </div>
+
+      <TextArea
+        id="category"
+        name="category"
+        className="form-control"
+        value={props.course.category}
+        onChange={props.onChangeHandler}
+        label="category"
+      />
+
 
       <input type="submit" value="Save" className="btn btn-primary" />
     </form>
