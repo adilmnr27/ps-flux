@@ -1,7 +1,8 @@
 import React, { useState , useEffect} from 'react'
 import CourseForm from './CourseForm'
-import * as courseApi from "../api/courseApi";
 import { toast } from 'react-toastify'
+import courseStore from '../stores/courseStore';
+import * as courseActions from "../actions/courseAction";
 
 export default function ManageCourses(props) {
     const [course, setCourse] = useState({
@@ -17,9 +18,8 @@ export default function ManageCourses(props) {
     */
     useEffect(() => {
         if(props.match.params.slug){
-            courseApi.getCourseBySlug(props.match.params.slug).then(_course=>{
-                setCourse(_course);
-            })
+            debugger;
+            setCourse(courseStore.getCourseBySlug(props.match.params.slug))
         }
     }, [props.match.params.slug])
 
@@ -39,7 +39,7 @@ export default function ManageCourses(props) {
 
     function handleSubmit(event){
         event.preventDefault(); //prevents the event from posting back to server
-        courseApi.saveCourse(course).then(data=>{
+        courseActions.saveCourse(course).then(data=>{
             props.history.push("/courses");
             toast.success("Course Saved")
         })
