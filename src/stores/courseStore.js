@@ -47,23 +47,27 @@ const store = new CourseStore();
 //now register the store with dispatcher
 dispatcher.register(action => {
     switch (action.actionType) {
-        case actionTypes.ADD_COURSE:
-            
-            _courses.push(action.course);
 
+        case actionTypes.ADD_COURSE:
+            _courses.push(action.course);
             //Anytime that the store changes, we need to call emitChange();
             //We just change the course by pushing a new course
             //By emitting the change , any react components which have registerd to the store will be notified
             store.emitChange();
             break;
+
         case actionTypes.UPDATE_COURSE:
-            
             _courses = _courses.map(course => course.id == action.course.id ? action.course : course);
             store.emitChange();
             break;
+
         case actionTypes.LOAD_COURSES:
-            
             _courses= action.courses;
+            store.emitChange();
+            break;
+
+        case actionTypes.DELETE_COURSE:
+            _courses=_courses.filter(course => !(course.id == action.deletedId));
             store.emitChange();
             break;
         default:

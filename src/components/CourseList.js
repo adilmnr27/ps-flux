@@ -19,6 +19,7 @@ export default function CourseList(props) {
                                 <td><Link to={"/course" + course.slug}>{course.title}</Link></td>
                                 <td>{course.authorId}</td>
                                 <td>{course.category}</td>
+                                <td ><button className="btn btn-outline-danger" onClick={()=>props.deleteCourse(course.id)}>Remove</button></td>
                             </tr>)
                         })
                     }
