@@ -37,7 +37,7 @@ class CourseStore extends EventEmitter {
     //handy function to return a part of data from flux store
     getCourseBySlug(slug) {
         debugger;
-        _courses.find(course => {
+       return _courses.find(course => {
             return course.slug === slug
         })
     }
@@ -51,9 +51,14 @@ dispatcher.register(action => {
             debugger;
             _courses.push(action.course);
 
-            //Anytime that the storoe changes, we need to call emitChange();
+            //Anytime that the store changes, we need to call emitChange();
             //We just change the course by pushing a new course
             //By emitting the change , any react components which have registerd to the store will be notified
+            store.emitChange();
+            break;
+        case actionTypes.UPDATE_COURSE:
+            debugger;
+            _courses = _courses.map(course => course.id == action.course.id ? action.course : course);
             store.emitChange();
             break;
         case actionTypes.LOAD_COURSES:

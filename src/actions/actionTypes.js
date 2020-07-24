@@ -1,4 +1,5 @@
 export default {
     ADD_COURSE: "ADD_COURSE",
+    UPDATE_COURSE:"UPDATE_COURSE",
     LOAD_COURSES: "LOAD_COURSES"
 }

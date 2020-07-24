@@ -8,7 +8,7 @@ export function saveCourse(course){
     return courseApi.saveCourse(course).then(savedCourse=>{
         //let dispatcher know that action has been triggered 
         dispatcher.dispatch({
-            actionType:actionTypes.ADD_COURSE,
+            actionType:course.id ? actionTypes.UPDATE_COURSE : actionTypes.ADD_COURSE,
             course:course
         })
     })
