@@ -56,6 +56,11 @@ dispatcher.register(action => {
             //By emitting the change , any react components which have registerd to the store will be notified
             store.emitChange();
             break;
+        case actionTypes.LOAD_COURSES:
+            debugger;
+            _courses= action.courses;
+            store.emitChange();
+            break;
         default:
 
     }

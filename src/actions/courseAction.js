@@ -13,3 +13,13 @@ export function saveCourse(course){
         })
     })
 }
+
+export function loadCourses(course){
+    return courseApi.getCourses().then(_courses=>{
+        //let dispatcher know that action has been triggered 
+        dispatcher.dispatch({
+            actionType:actionTypes.LOAD_COURSES,
+            courses:_courses
+        })
+    })
+}

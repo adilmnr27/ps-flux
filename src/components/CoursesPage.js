@@ -1,17 +1,41 @@
-import React, { useState } from 'react';
-import { getCourses } from '../api/courseApi';
+import React, { useState, useEffect } from 'react';
 import CourseList from './CourseList';
 import { Link } from 'react-router-dom';
+import * as courseAction from '../actions/courseAction';
+import courseStore from '../stores/courseStore'
 
- function CoursesPage() {
-    const [ courses, setCourses ] = useState([]);
+function CoursesPage() {
+    const [courses, setCourses] = useState(courseStore.getCourses());
 
-    React.useEffect(() => {
-        getCourses().then(data => {
-            console.log("getting courses")
-            console.log(data);
-            setCourses(data)})
-    },[]);
+    
+    useEffect(() => {
+        //add change listener accepts a function which will be called when store changes
+        courseStore.addChangeListener(onChange);
+        if (courseStore.getCourses().length === 0) {
+            //meaning it has not been initialized
+            courseAction.loadCourses();
+        }
+        return () => courseStore.removeChangeListener(onChange); //clean up on unmount
+
+               
+    }, []);
+    
+
+    /*
+    useEffect(() => {
+        if(courseStore.getCourses().length===0){
+            courseAction.loadCourses().then(_courses=>{
+                setCourses(courseStore.getCourses(_courses));
+            })
+        }
+    
+    }, [courseStore.getCourses().length])
+    */
+    
+
+    function onChange() {
+        setCourses(courseStore.getCourses());
+    }
 
     return (
         <>
