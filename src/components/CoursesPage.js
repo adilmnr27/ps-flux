@@ -13,7 +13,7 @@ function CoursesPage() {
         //add change listener accepts a function which will be called when store changes
         courseStore.addChangeListener(onChange);
         if (courseStore.getCourses().length === 0) {
-            debugger;
+            ;
             //meaning it has not been initialized
             courseAction.loadCourses();
         }
